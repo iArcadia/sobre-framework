@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteBase /
+
+RewriteRule ^((?:public|vendor).*)$ $1 [L]
+RewriteRule ^.*$ index.php [L]

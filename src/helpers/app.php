@@ -70,19 +70,3 @@ if (!function_exists('url')) {
         return trim(env('APP_URL'), '/') . $url;
     }
 }
-
-if (!function_exists('root_path')) {
-    /**
-     * Get the project root path.
-     * @param string $file
-     * @return string
-     */
-    function root_path(string $file = ''): string
-    {
-        return join(DIRECTORY_SEPARATOR, [
-            __DIR__,
-            '..', '..',
-            str_replace('/', DIRECTORY_SEPARATOR, trim($file, '/'))
-        ]);
-    }
-}

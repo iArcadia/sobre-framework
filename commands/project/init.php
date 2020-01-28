@@ -27,11 +27,13 @@ $dir_to_copy = ['public', 'database', 'config'];
 $files_to_copy = ['index.php', '.env', '.htaccess'];
 
 foreach ($dir_to_copy as $dir) {
-    recursive_copy(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', $dir]), join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..', '..', $dir]));
+    recursive_copy(sobre_path($dir), root_path($dir));
+//    recursive_copy(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', $dir]), join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..', '..', $dir]));
 }
 
 foreach ($files_to_copy as $file) {
-    copy(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', $file]), join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..', '..', $file]));
+    copy(sobre_path($file), root_path($file));
+//    copy(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', $file]), join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..', '..', $file]));
 }
 
 echo PHP_EOL;

@@ -2,5 +2,6 @@ RewriteEngine On
 
 RewriteBase /
 
+RewriteRule ^_test(.*)$ _test$1 [L]
 RewriteRule ^((?:public|vendor).*)$ $1 [L]
 RewriteRule ^.*$ index.php [L]

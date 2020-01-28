@@ -23,7 +23,18 @@ function recursive_copy(string $source, string $destination): void
     closedir($directory);
 }
 
-recursive_copy(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'public']), join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..']));
+$dir_to_copy = ['public', 'database', 'config'];
+$files_to_copy = ['index.php', '.env', '.htaccess'];
 
+foreach ($dir_to_copy as $dir) {
+    recursive_copy(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', $dir]), join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..', '..', $dir]));
+}
+
+foreach ($files_to_copy as $file) {
+    copy(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', $file]), join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..', '..', $file]));
+}
+
+echo PHP_EOL;
+echo 'The Sobre project has been correctly initialized.';
 echo PHP_EOL;
 exit();

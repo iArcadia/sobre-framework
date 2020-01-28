@@ -1,5 +1,7 @@
 <?php
 
+echo __DIR__;
+
 /**
  * @param string $source
  * @param string $destination
@@ -23,7 +25,7 @@ function recursive_copy(string $source, string $destination): void
     closedir($directory);
 }
 
-recursive_copy('../public', $argv[1]);
+//recursive_copy('../public', $argv[1]);
 
 echo PHP_EOL;
 exit();

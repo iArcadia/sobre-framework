@@ -23,7 +23,7 @@ function recursive_copy(string $source, string $destination): void
     closedir($directory);
 }
 
-recursive_copy(join(DIRECTORY_SEPARATOR, ['..', '..', 'public']), join(DIRECTORY_SEPARATOR, ['..', '..', '..', '..']));
+recursive_copy(join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'public']), join(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', '..', '..']));
 
 echo PHP_EOL;
 exit();

@@ -20,13 +20,13 @@ class Router
         if (!$uri) {
             $request_uri = Server::uri();
 
-            $uri = ($request_uri && $request_uri !== '/') ? Server::uri() : config('router.directory-namespace');
+            $uri = ($request_uri && $request_uri !== '/') ? Server::uri() : config('router.namespace.directory');
         }
 
         $uri = str_replace('/', '\\', $uri);
         $uri = str_replace('-', '', $uri);
         $uri = preg_replace('/\?.*/', '', $uri);
 
-        return config('router.index-namespace', 'App') . '\\' . trim($uri, '\\') . '\\Controller';
+        return config('router.namespace.index', 'App\\Routes') . '\\' . trim($uri, '\\') . '\\' . basename($uri) . 'Controller';
     }
 }

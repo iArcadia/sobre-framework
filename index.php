@@ -7,7 +7,7 @@ use SobreFramework\Core\{Core, Session};
 try {
     Core::start();
 
-    require_once('public/views/base.blade.php');
+    require_once(root_path('app/views/base.blade.php'));
 } catch (\Exception $e) {
     dd($e);
 }

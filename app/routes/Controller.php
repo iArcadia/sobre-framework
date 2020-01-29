@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Route;
+namespace App\Routes;
 
 use SobreFramework\Core\Controller as BaseController;
 

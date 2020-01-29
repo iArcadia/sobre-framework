@@ -38,9 +38,9 @@ $files = [
 foreach ($files as $file) {
     echo 'Copying "' . $file . '" file' . PHP_EOL;
     if (!file_exists(root_path($file))) {
-        copy(sobre_path($file), root_path($file));
+        copy(sobre_path('core/' . $file), root_path($file));
     }
 }
 
-echo 'The Sobre Framework project has been correctly initialized.';
+echo 'The Sobre Framework v' . sobre_version() . ' project has been correctly initialized.';
 exit();

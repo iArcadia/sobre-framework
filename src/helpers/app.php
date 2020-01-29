@@ -1,5 +1,16 @@
 <?php
 
+if (!function_exists('sobre_version')) {
+    /**
+     * Get the version of the framework.
+     * @return string
+     */
+    function sobre_version(): string
+    {
+        return json_decode(file_get_contents(sobre_path('core/composer.json')))['version'];
+    }
+}
+
 if (!function_exists('env')) {
     /**
      * Get data of the environment file.

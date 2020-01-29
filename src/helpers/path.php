@@ -95,3 +95,39 @@ if (!function_exists('root_path')) {
         return path_goto($to, path_go_back(1, path_go_back_until('vendor')));
     }
 }
+
+if (!function_exists('recursive_path')) {
+    /**
+     * @param string $from
+     * @param array $excluded_files
+     * @param Closure|null $cb
+     * @return array
+     */
+    function recursive_path(string $from = __DIR__, array $excluded_files = [], ?\Closure $cb = null): array
+    {
+        $paths = [];
+
+        $filter = function ($file, $key, $i) use ($excluded_files) {
+            if ($i->hasChildren() && !in_array($file->getFilename(), $excluded_files)) {
+                return true;
+            }
+
+            return $file->isFile();
+        };
+
+        $i = new RecursiveDirectoryIterator($from, RecursiveDirectoryIterator::SKIP_DOTS);
+        $ii = new RecursiveIteratorIterator(
+            new RecursiveCallbackFilterIterator($i, $filter)
+        );
+
+        foreach ($ii as $path => $item) {
+            $paths[] = $path;
+
+            if ($cb) {
+                $cb($path, $item);
+            }
+        }
+
+        return $paths;
+    }
+}

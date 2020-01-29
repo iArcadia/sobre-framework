@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . '/../../../../autoload.php');
 
-$force = $argv[1] === '-f' || $argv[1] === '--force';
+$force = isset($argv[1]) && ($argv[1] === '-f' || $argv[1] === '--force');
 
 $directories = [
     'app',

@@ -55,6 +55,11 @@ if (!function_exists('config')) {
 
         if (!$data) {
             $config_file = array_shift($keys) . '.php';
+
+            if (!file_exists(root_path('config/' . $config_file))) {
+                return null;
+            }
+
             $data = require_once(root_path('config/' . $config_file));
         }
 

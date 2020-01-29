@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../../../vendor/autoload.php');
+require_once(__DIR__ . '/../../../../autoload.php');
 
 $dir_to_copy = ['public', 'database', 'config'];
 $root_files_to_copy = ['index.php', '.env', '.htaccess'];

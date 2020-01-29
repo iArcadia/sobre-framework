@@ -59,6 +59,6 @@ class Breadcrumb
      */
     public function render(): void
     {
-        require_once('public/views/breadcrumb.php');
+        require_once('public/views/breadcrumb.blade.php');
     }
 }

@@ -14,7 +14,7 @@ $view = $controller->exec();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title><?= env('APP_NAME', 'Sobre Framework Project') ?> - <?= $controller->getTitle() ?></title>
+    <title><?= env('APP_NAME', config('app.name', 'Sobre Framework Project')) ?> - <?= $controller->getTitle() ?></title>
 </head>
 <body>
 

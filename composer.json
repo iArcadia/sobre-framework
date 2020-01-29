@@ -1,7 +1,7 @@
 {
     "name": "sobre-framework/core",
     "description": "A simple and lightweight PHP framework.",
-    "version": "0.0.0202001291214",
+    "version": "0.0.1",
     "type": "library",
     "license": "MIT",
     "authors": [

@@ -30,7 +30,7 @@ class Server
         $request = self::get();
         $uri = $request['SCRIPT_URI'] ?? $request['REQUEST_URI'];
 
-        return str_replace(trim(env('APP_URL'), '/'), '', trim($uri, '/'));
+        return str_replace(trim(env('APP_URL', config('app.url', null)), '/'), '', trim($uri, '/'));
     }
 
     /**

@@ -67,6 +67,6 @@ if (!function_exists('url')) {
      */
     function url(string $url = null): string
     {
-        return trim(env('APP_URL'), '/') . $url;
+        return trim(env('APP_URL', config('app.url', null)), '/') . $url;
     }
 }

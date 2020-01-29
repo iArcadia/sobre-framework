@@ -36,7 +36,7 @@ class View
     {
         $GLOBALS['VIEW_DATA'] = $this->getData();
 
-        require('public/views/view_initializer.php');
+        require(sobre_path('public/views/view_initializer.php'));
         require(static::find($this->getName()));
 
         return $this;
@@ -97,7 +97,7 @@ class View
      */
     public static function find(string $view): string
     {
-        return '_app_old/' . $view . '.vue.php';
+        return root_path('app/views/' . $view . '.blade.php');
     }
 
     /**

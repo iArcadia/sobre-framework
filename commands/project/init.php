@@ -2,19 +2,44 @@
 
 require_once(__DIR__ . '/../../../../autoload.php');
 
-$dir_to_copy = ['public', 'database', 'config'];
-$root_files_to_copy = ['index.php', '.env', '.htaccess'];
+$directories = [
+    'app',
+    'app/models',
+    'app/routes',
+    'app/views',
+    'config',
+    'public',
+    'public/css',
+    'public/img',
+    'public/js'
+];
 
-foreach ($root_files_to_copy as $file) {
-    copy(sobre_path('core/' . $file), root_path($file));
+foreach ($directories as $directory) {
+    echo 'Making "' . $directory . '" directory' . PHP_EOL;
+    $directory = root_path($directory);
+
+    if (!file_exists($directory)) {
+        mkdir($directory);
+    }
 }
 
-foreach ($dir_to_copy as $dir) {
-    $dir = path_goto($dir);
+$files = [
+    'app/models/Model.php',
+    'app/routes/Controller.php',
+    'app/views/base.blade.php',
+    'app/views/breadcrumb.blade.php',
+    'config/app.php',
+    'config/router.php',
+    '.env',
+    '.htaccess',
+    'index.php'
+];
 
-    recursive_path($dir, read_sobreignore($dir), function ($path, $file) {
-        copy($path, root_path($path));
-    });
+foreach ($files as $file) {
+    echo 'Copying "' . $file . '" file' . PHP_EOL;
+    if (!file_exists(root_path($file))) {
+        copy(sobre_path($file), root_path($file));
+    }
 }
 
 echo 'The Sobre Framework project has been correctly initialized.';

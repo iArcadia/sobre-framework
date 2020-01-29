@@ -10,6 +10,8 @@ foreach ($root_files_to_copy as $file) {
 }
 
 foreach ($dir_to_copy as $dir) {
+    $dir = path_goto($dir);
+
     recursive_path($dir, read_sobreignore($dir), function ($path, $file) {
         copy($path, root_path($path));
     });

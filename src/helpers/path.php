@@ -98,6 +98,7 @@ if (!function_exists('root_path')) {
 
 if (!function_exists('recursive_path')) {
     /**
+     * Return an array of a directory and its children.
      * @param string $from
      * @param array $excluded_files
      * @param Closure|null $cb
@@ -129,5 +130,19 @@ if (!function_exists('recursive_path')) {
         }
 
         return $paths;
+    }
+}
+
+if (!function_exists('read_sobreignore')) {
+    function read_sobreignore(string $from = __DIR__): array
+    {
+        $files = [];
+        $ignore_file = path_goto('.sobreignore', $from);
+
+        if (file_exists($ignore_file)) {
+            $files = explode(PHP_EOL, file_get_contents($ignore_file));
+        }
+
+        return $files;
     }
 }

@@ -2,6 +2,8 @@
 
 require_once(__DIR__ . '/../../../../autoload.php');
 
+$force = $argv[1] === '-f' || $argv[1] === '--force';
+
 $directories = [
     'app',
     'app/models',
@@ -15,10 +17,10 @@ $directories = [
 ];
 
 foreach ($directories as $directory) {
-    echo 'Making "' . $directory . '" directory' . PHP_EOL;
     $directory = root_path($directory);
 
     if (!file_exists($directory)) {
+        echo 'Making "' . $directory . '" directory' . PHP_EOL;
         mkdir($directory);
     }
 }
@@ -36,9 +38,15 @@ $files = [
 ];
 
 foreach ($files as $file) {
-    echo 'Copying "' . $file . '" file' . PHP_EOL;
     if (!file_exists(root_path($file))) {
+        echo 'Copying "' . $file . '" file' . PHP_EOL;
         copy(sobre_path('core/' . $file), root_path($file));
+    } else {
+        if ($force) {
+            echo 'Replacing "' . $file . '" file' . PHP_EOL;
+            unlink(root_path($file));
+            copy(sobre_path('core/' . $file), root_path($file));
+        }
     }
 }
 

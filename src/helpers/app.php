@@ -7,7 +7,7 @@ if (!function_exists('sobre_version')) {
      */
     function sobre_version(): string
     {
-        return json_decode(file_get_contents(sobre_path('core/composer.json')))['version'];
+        return json_decode(file_get_contents(sobre_path('core/composer.json')))->version;
     }
 }
 

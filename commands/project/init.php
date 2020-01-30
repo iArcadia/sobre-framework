@@ -8,6 +8,7 @@ $directories = [
     'app',
     'app/models',
     'app/routes',
+    'app/routes/home',
     'app/views',
     'config',
     'public',
@@ -28,10 +29,11 @@ foreach ($directories as $directory) {
 $files = [
     'app/models/Model.php',
     'app/routes/Controller.php',
+    'app/routes/routes.php',
+    'app/routes/home/HomeController.php',
     'app/views/base.blade.php',
     'app/views/breadcrumb.blade.php',
     'config/app.php',
-    'config/router.php',
     '.env',
     '.htaccess',
     'index.php'

@@ -16,14 +16,14 @@ class Router
      */
     protected static function getRoutes(): array
     {
-        return json_decode(root_path('app/routes/routes.php'), true);
+        return require_once(root_path('app/routes/routes.php'));
     }
 
     /**
      * Flat the route list.
      *
      * @static
-     * @param array|null $list
+     * @param array $list
      * @param string $namespace
      * @param string $uri
      * @return array
@@ -34,17 +34,22 @@ class Router
 
         if (!$list) {
             $list = Router::getRoutes();
+            $namespace = $list['namespace'];
         }
 
         if (isset($list['routes']) && $list['routes']) {
             foreach ($list['routes'] as $route) {
                 $route['namespace'] = $namespace . '\\' . $route['namespace'];
-                $route['uri'] = $uri . '\\' . $route['uri'];
+                $route['uri'] = trim($route['uri'], '/');
 
-                $routes[$route[$uri]] = $route;
+                if ($uri) {
+                    $route['uri'] = ($uri === '/') ? $uri . $route['uri'] : $uri . '/' . $route['uri'];
+                }
+
+                $routes[$route['uri']] = $route;
 
                 if (isset($route['routes']) && $route['routes']) {
-                    $routes = array_merge($routes, Router::flatRouteList($route['routes'], $namespace, $uri));
+                    $routes = array_merge($routes, Router::flatRouteList($route, $route['namespace'], $route['uri']));
                 }
             }
         }

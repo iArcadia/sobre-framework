@@ -40,7 +40,7 @@ class Server
 
         $request_uri = str_replace(trim(env('APP_URL', config('app.url', null)), '/'), '', trim($request_uri, '/'));
 
-        $uri = ($request_uri && $request_uri !== '/') ? $request_uri : config('router.root', 'home');
+        $uri = ($request_uri && $request_uri !== '/') ? $request_uri : '/';
 
         return $uri;
     }

@@ -17,7 +17,15 @@ class Server
      */
     public static function get(?string $key = null)
     {
-        return ($key) ? $_SERVER[$key] : $_SERVER;
+        if ($key) {
+            if (isset($_SERVER[$key])) {
+                return $_SERVER[$key];
+            }
+
+            return null;
+        }
+
+        return $_SERVER;
     }
 
     /**
@@ -28,9 +36,13 @@ class Server
      */
     public static function uri(): string
     {
-        $uri = self::get('SCRIPT_URI') ?? self::get('REQUEST_URI');
+        $request_uri = self::get('SCRIPT_URI') ?? self::get('REQUEST_URI');
 
-        return str_replace(trim(env('APP_URL', config('app.url', null)), '/'), '', trim($uri, '/'));
+        $request_uri = str_replace(trim(env('APP_URL', config('app.url', null)), '/'), '', trim($request_uri, '/'));
+
+        $uri = ($request_uri && $request_uri !== '/') ? $request_uri : config('router.root', 'home');
+
+        return $uri;
     }
 
     /**
@@ -41,7 +53,7 @@ class Server
      */
     public static function isPostMethod(): bool
     {
-        return self::get()['REQUEST_METHOD'] === 'POST';
+        return self::get('REQUEST_METHOD') === 'POST';
     }
 
     /**
@@ -52,6 +64,6 @@ class Server
      */
     public static function isGetMethod(): bool
     {
-        return self::get()['REQUEST_METHOD'] === 'GET';
+        return self::get('REQUEST_METHOD') === 'GET';
     }
 }

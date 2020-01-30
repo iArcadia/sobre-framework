@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'namespace' => [
-        'directory' => 'App\\Routes',
-        'index' => 'Home'
-    ]
+    'namespace' => 'App\\Routes',
+    'root' => 'home',
+    'index' => 'index'
 ];

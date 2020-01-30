@@ -1,8 +1,11 @@
 <?php
 
 require_once('vendor/autoload.php');
+dd(config('router.namespace.directory'));
 
 use SobreFramework\Core\{Core, Session};
+
+dd(\SobreFramework\Core\Router::findController());
 
 try {
     Core::start();

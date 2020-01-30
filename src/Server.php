@@ -12,11 +12,12 @@ class Server
      * Get the global server variable.
      *
      * @static
-     * @return array
+     * @param string|null $key
+     * @return array|mixed
      */
-    public static function get(): array
+    public static function get(?string $key = null)
     {
-        return $_SERVER;
+        return ($key) ? $_SERVER[$key] : $_SERVER;
     }
 
     /**
@@ -27,8 +28,7 @@ class Server
      */
     public static function uri(): string
     {
-        $request = self::get();
-        $uri = $request['SCRIPT_URI'] ?? $request['REQUEST_URI'];
+        $uri = self::get('SCRIPT_URI') ?? self::get('REQUEST_URI');
 
         return str_replace(trim(env('APP_URL', config('app.url', null)), '/'), '', trim($uri, '/'));
     }
